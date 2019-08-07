@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,5 +46,31 @@ namespace WEB_API_LIBROS.Controllers
             return new CreatedAtRouteResult("ObtenerAutor", new { id = autor.Id }, autor);
         }
 
+        [HttpPut("{id}")]
+        public ActionResult Put(int id, [FromBody] Autor value)
+        {
+            if (id != value.Id)
+            {
+                return BadRequest();
+            }
+            context.Entry(value).State = EntityState.Modified;
+            context.SaveChanges();
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Autor> Delete(int id)
+        {
+            var autor = context.Autores.FirstOrDefault(x => x.Id == id);
+
+            if (autor == null)
+            {
+                return NotFound();
+            }
+
+            context.Autores.Remove(autor);
+            context.SaveChanges();
+            return Ok();
+        }
     }
 }
