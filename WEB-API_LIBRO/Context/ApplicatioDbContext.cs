@@ -16,7 +16,7 @@ namespace WEB_API_LIBRO.Context
 
         public DbSet<Autor> Autores { get; set; }
         public DbSet<Libros> Libros { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<SubCate> SubCates { get; set; }
+        public DbSet<Categoria> Categorias { get; set;}
+        public DbSet<SubCate> SubCates { get; set;}
     }
 }

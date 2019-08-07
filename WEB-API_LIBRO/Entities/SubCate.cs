@@ -13,6 +13,6 @@ namespace WEB_API_LIBRO.Entities
         public string NombreSub { get; set; }
         [Required]
         public int CategoriaId { get; set; }
-        public Categoria Categoria { get; set; }
+        public Categoria Categoria { get; set;}
     }
 }
