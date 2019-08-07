@@ -26,5 +26,24 @@ namespace WEB_API_LIBROS.Controllers
             return context.Autores.ToList();
         }
 
+        [HttpGet("{id}", Name = "ObtenerAutor")]
+        public ActionResult<Autor> Get(int id)
+        {
+            var autor = context.Autores.FirstOrDefault(x => x.Id == id);
+            if (autor == null)
+            {
+                return NotFound();
+            }
+            return autor;
+        }
+
+        [HttpPost]
+        public ActionResult Post([FromBody] Autor autor)
+        {
+            context.Autores.Add(autor);
+            context.SaveChanges();
+            return new CreatedAtRouteResult("ObtenerAutor", new { id = autor.Id }, autor);
+        }
+
     }
 }
