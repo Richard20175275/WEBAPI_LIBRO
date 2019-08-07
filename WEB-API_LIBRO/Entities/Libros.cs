@@ -4,15 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WEB_API_LIBROS.Entities
+namespace WEB_API_LIBRO.Entities
 {
-    public class Autor
+    public class Libros
     {
-
+        
         public int Id { get; set; }
         [Required]
-        public string Nombre { get; set; }
-        public List<Libro> Libros { get; set; }
-
+        public string Titulo { get; set; }
+        [Required]
+        public int AutorId { get; set; }
+        public Autor Autor { get; set; }
     }
 }

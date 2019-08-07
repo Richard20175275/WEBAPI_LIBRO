@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WEB_API_LIBROS.Contexts;
+using WEB_API_LIBRO.Context;
 
-namespace WEB_API_LIBROS.Migrations
+namespace WEB_API_LIBRO.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApplicatioDbContext))]
+    partial class ApplicatioDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -18,7 +18,7 @@ namespace WEB_API_LIBROS.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WEB_API_LIBROS.Entities.Autor", b =>
+            modelBuilder.Entity("WEB_API_LIBRO.Entities.Autor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,7 +32,7 @@ namespace WEB_API_LIBROS.Migrations
                     b.ToTable("Autores");
                 });
 
-            modelBuilder.Entity("WEB_API_LIBROS.Entities.Libro", b =>
+            modelBuilder.Entity("WEB_API_LIBRO.Entities.Libros", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,9 +50,9 @@ namespace WEB_API_LIBROS.Migrations
                     b.ToTable("Libros");
                 });
 
-            modelBuilder.Entity("WEB_API_LIBROS.Entities.Libro", b =>
+            modelBuilder.Entity("WEB_API_LIBRO.Entities.Libros", b =>
                 {
-                    b.HasOne("WEB_API_LIBROS.Entities.Autor", "Autor")
+                    b.HasOne("WEB_API_LIBRO.Entities.Autor", "Autor")
                         .WithMany("Libros")
                         .HasForeignKey("AutorId")
                         .OnDelete(DeleteBehavior.Cascade);
