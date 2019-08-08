@@ -26,7 +26,7 @@ namespace WEB_API_LIBRO.Controllers
             return context.Categorias.Include(x => x.SubCates).ToList();
         }
 
-        [HttpGet("{id}", Name = "ObtenerAutor")]
+        [HttpGet("{id}", Name = "ObtenerCategoria")]
         public ActionResult<Categoria> Get(int id)
         {
             var categoria = context.Categorias.Include(x => x.SubCates).FirstOrDefault(x => x.Id == id);
@@ -42,7 +42,7 @@ namespace WEB_API_LIBRO.Controllers
         {
             context.Categorias.Add(categoria);
             context.SaveChanges();
-            return new CreatedAtRouteResult("ObtenerAutor", new { id = categoria.Id }, categoria);
+            return new CreatedAtRouteResult("ObtenerCategoria", new { id = categoria.Id }, categoria);
         }
 
         [HttpPut("{id}")]
