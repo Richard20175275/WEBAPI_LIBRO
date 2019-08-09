@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WEB_API_LIBRO.Context;
 using WEB_API_LIBRO.Entities;
+using WEB_API_LIBRO.Services;
 
 namespace WEB_API_LIBRO.Controllers
 {
@@ -14,10 +15,15 @@ namespace WEB_API_LIBRO.Controllers
     public class AutorController: ControllerBase
     {
         private readonly ApplicatioDbContext context;
+        private readonly IRepAutor repautor;
 
         public AutorController(ApplicatioDbContext context)
         {
             this.context = context;
+        }
+        public AutorController(IRepAutor repautor)
+        {
+            this.repautor = repautor;
         }
 
         [HttpGet]
@@ -29,7 +35,7 @@ namespace WEB_API_LIBRO.Controllers
         [HttpGet("{id}", Name = "ObtenerAutor")]
         public ActionResult<Autor> Get(int id)
         {
-            var autor = context.Autores.Include(x => x.Libros).FirstOrDefault(x => x.Id == id);
+            var autor = repautor.ObtenerPorId(id);
             if (autor == null)
             {
                 return NotFound();
