@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WEB_API_LIBRO.Entities;
+using WebApiModulo9.Entities;
 
-namespace WEB_API_LIBRO.Services
+namespace WebApiModulo9.Services
 {
-    public interface IRepAutor
+    public interface IRepositorioAutores
     {
         Autor ObtenerPorId(int id);
     }

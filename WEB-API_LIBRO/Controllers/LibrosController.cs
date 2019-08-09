@@ -30,13 +30,12 @@ namespace WEB_API_LIBRO.Controllers
         [HttpGet("{id}", Name = "ObtenerLibro")]
         public ActionResult<Libros> Get(int id)
         {
-            var libro = context.Libros.Include(x => x.Autor).FirstOrDefault(x => x.Id == id);
-
-            if (libro == null)
+            var autor = context.Libros.Include(x => x.Autor).FirstOrDefault(x => x.Id == id);
+            if (autor == null)
             {
                 return NotFound();
             }
-            return libro;
+            return autor;
         }
 
         [HttpPost]
