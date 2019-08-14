@@ -31,11 +31,23 @@ namespace WEB_API_LIBRO
             services.AddDbContext<ApplicatioDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddSwaggerGen(config =>
+            {
+                config.SwaggerDoc("API_LIBRO", new Swashbuckle.AspNetCore.Swagger.Info { Title = "API_LIBRO", Version = "Version Definitiva" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            app.UseSwagger();
+            app.UseSwaggerUI(config=>{
+                config.SwaggerEndpoint("/swagger/API_LIBRO/swagger.json", "API LIBRO");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
